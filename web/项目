@@ -1,0 +1,34 @@
+开发环境:Windows10 + JDK1.7 + Eclipse + Tomcat7.0 + Oracle + Maven3+ git
+软件架构:	Spring3.2 +SpringMVC + dubbo2.8+zookepper + hibernate3.6
+项目描述:
+该系统包括: 采购管理, 工单管理, 库房管理, 综合查询, 财务管理, 报表管理, 数据迁移.
+技术描述:
+基于Maven3通过集成聚合项目管理, 使用git进行版本管理
+项目采用Spring+SpringMVC+Hibernate为基础进行设计,
+使用dubbo框架+Zookeeper注册中心,提供高性能和透明化的RPC远程服务调用
+使用array做负载均衡
+数据库使用Oracle
+ETL抽取数据进行数据迁移
+责任描述:	参与终端管理系统项目的环境搭建, 参与终端管理系统项目一期至三期的迭代开发.
+    主要负责采购管理, 工单管理, 财务管理, 报表管理的开发, 以及一期的数据迁移;
+
+在WEB层通过FrontController处理HTTP请求前端技术采用JSP作为视图，使用Javascript脚本语言，数据库采用Oracle，设置了八个机构库和一个中心库，采用iBatis作为持久层框架，将对数据库的SQL语句以及Package的调用全部封装到ＤＡＯ中。系统的步骤流转都由工作流来推动。
+
+
+海豚自动化运维平台帮助企业将传统的基础设施资源升级为新一代运维管理平台。
+该系统包括: 应用服务, 主机服务, 存储备份服务, 网络服务, 其他服务。每个服务包括若干个模块，例如：中间件自动化平台，证书管理等
+系统使用了Java企业级开发的SSM架构开源解决方案。
+前端技术: 采用JavaScript/Jquery，使用Bootstrap框架，JSP作为视图
+后台技术: 使用Java编程语言,采用Spring3.1框架,应用AOP技术采集操作数据，SpringMVC作为控制层。
+数据层: 使用Mybaits3.2 + SQL语言
+
+
+本项目应用了SSM架构开源解决方案并部署成Maven项目。其中表现层采用SpringMVC框架开发；业务层封装业务流程，为适应业务的变更，每一业务模块均有专门的接口及实现类；数据持久层采用Mybatis技术实现业务层和数据库的交互，底层是MySql数据库；在事务控制方面应用了Spring框架，通过AOP技术移植到了配置文件中（TransactionManager），大大减少了非业务代码的侵入性，从而提高了我们系统的可扩展性；利用Spring的IOC功能将实现类注入给表现层的Controller，大大缩短了开发周期，IOC容器很好的实现了程序的解耦合。
+
+Spring整合Shiro做权限控制模块
+    :maven引入Shiro依赖,配置shirofilter核心过滤器,继承AuthorizingRealm类实现授权和认证管理
+    :出于安全的考虑，一般都会使用ACL(基于角色的用户权限管理去控制用户登录后的权限)
+
+
+
+

@@ -1,0 +1,120 @@
+@startuml
+start
+:部件验证;
+if (机身号/终端号?) then (终端号)
+    if (主机库表存是否存在?) then
+        if (机身号是否为空?) then (no)
+            if (部件表是否存在?) then (yes)
+                if (部件表品牌型号是否存在?) then (yes)
+                    if (出机方式?) then (带机入网)
+                        if (代理库或切机库?) then (no)
+                        :error:不是代理库或切机库;
+                        stop
+                        endif;
+                    else if(其他)
+                        if (旧机库或新机库或经理库?) then (no)
+                        :error:不是旧机库或新机库或经理库;
+                        stop
+                        endif;
+                    endif;
+                    if (主机注册标识==已入库)then (yes)
+                        if (部件状态==未使用) then (yes)
+                        :success:快签出机-POSP入库;
+                        stop
+                        else if (部件状态==绑定或下发) then (yes)
+                        :success:先灌模式或先出模式;
+                        stop
+                        else(其他)
+                        :error:部件不是未使用;
+                        stop
+                        endif;
+                    else if (主机注册标识==已出库)then (yes)
+                        if (部件状态?) then (未使用)
+                        :success:快签出机-快签出库;
+                        stop
+                        else(其他)
+                        :error:部件不是未使用;
+                        stop
+                        endif;
+                    else if (主机注册标识==已注册)then (yes)
+                        if (装机单是否存在?) then (no)
+                        :error:装机单不存在;
+                        stop
+                        endif;
+                        if(装机单是否完成?) then (no)
+                        :error:装机单未完成;
+                        stop
+                        endif;
+                        if(装机单是否撤机?) then (yes)
+                        :error:装机单存在撤机;
+                        stop
+                        endif;
+                        if(部件状态==已使用) then (yes)
+                        :success:单独租售;
+                        stop
+                        else (其他)
+                        :error:部件不是已使用;
+                        stop
+                        endif;
+                    else(其他)
+                    :error:主机库存状态是其他,不能装机;
+                    stop
+                    endif;
+                else (no)
+                :error:品牌型号错误;
+                stop
+                endif;
+            else (no)
+            :error:主机部件不存在;
+            stop
+            endif;
+        else (yes)
+        :error:主机库存机身号为空;
+        stop
+        endif;
+    else (no)
+    :error:主机库存不存在;
+    stop
+    endif;
+else (机身号)
+    if (部件表是否存在?) then (yes)
+        if (部件表品牌型号是否存在?) then (yes)
+            if (是否借机?) then (yes)
+            :success:借机工单;
+            stop
+            else(no)
+            endif;
+            if (出机方式?) then (带机入网)
+                if (代理库或切机库?) then (yes)
+                else(no)
+                :error:不是代理库或切机库;
+                stop
+                endif;
+            else(其他)
+                if (旧机库或新机库?) then (no)
+                :error:不是旧机库或新机库;
+                stop
+                endif;
+            endif;
+            if (主机库存表注册标识?) then (已入库/已出库)
+                :error:存在主机库存表;
+                stop
+                endif
+            if (撤机标识是否换终端?) then (no)
+                :error:只能终端号装机;
+                stop
+            else(yes)
+                :success:正常模式;
+                stop
+            endif;
+        else (no)
+        :error:品牌型号错误;
+        stop
+        endif;
+    else (no)
+    :error:主机部件不存在;
+    stop
+    endif;
+endif;
+
+@enduml

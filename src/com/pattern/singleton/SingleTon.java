@@ -1,5 +1,8 @@
 package com.pattern.singleton;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+
 /**
  * @Author: WangYuJ
  * @Description:
@@ -7,13 +10,16 @@ package com.pattern.singleton;
  */
 public class SingleTon {
     private static SingleTon singleTon;
+
     //饿汉式线程安全，但失去了资源延迟加载的优势
 //    private static SingleTon singleton = new SingleTon();
-    private SingleTon(){}
-    public /*synchronized*/ static SingleTon getSingleTon(){//方法同步其他线程进入需要等待，性能上有损失
-        if(null == singleTon){
-            synchronized (SingleTon.class){//双重校验锁
-                if(null == singleTon){
+    private SingleTon() {
+    }
+
+    public /*synchronized*/ static SingleTon getSingleTon() {//方法同步其他线程进入需要等待，性能上有损失
+        if (null == singleTon) {
+            synchronized (SingleTon.class) {//双重校验锁
+                if (null == singleTon) {
                     singleTon = new SingleTon();
                 }
             }
