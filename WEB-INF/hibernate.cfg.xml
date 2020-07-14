@@ -18,6 +18,8 @@
 
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
+        <mapping class="com.pattern.abfactory.ReceiptCombineFee"/>
+        <mapping class="com.yspay.TmsOrgSetting"/>
         <!-- Drop and re-create the database schema on startup -->
         <!--
         <property name="hbm2ddl.auto">update</property>
