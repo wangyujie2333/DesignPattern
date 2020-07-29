@@ -1,8 +1,5 @@
 package com.pattern.singleton;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-
 /**
  * @Author: WangYuJ
  * @Description:

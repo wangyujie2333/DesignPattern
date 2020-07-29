@@ -4,13 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>groupId</groupId>
+    <groupId>org.example</groupId>
     <artifactId>DesignPattern</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.build.jdk.version>1.8</project.build.jdk.version>
-        <maven.test.skip>true</maven.test.skip>
-        <maven.test.failure.ignore>true</maven.test.failure.ignore>
-    </properties>
+
+
 </project>

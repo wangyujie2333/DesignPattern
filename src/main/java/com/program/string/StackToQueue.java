@@ -30,6 +30,7 @@ public class StackToQueue {
         }
     }
 }
+
 class QueueToStack{
     private Queue<String> queue = new LinkedList();
 
