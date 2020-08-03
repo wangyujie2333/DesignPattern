@@ -1,8 +1,10 @@
 package com.program;
 
+import sun.security.provider.MD4;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+import java.security.MessageDigest;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -15,7 +17,44 @@ import java.util.zip.ZipOutputStream;
  **/
 public class ZipUtils {
 
-    public static void main(String[] args) {
+    private static final String MD5 = "MD5";
+    private static final String MD2 = "MD2";
+
+    private static final char[] HEX_CHARS =
+            {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        String str = "14fa98d4d74b189993c380c7b9e4d9d3"+"yVvdcU4syy2KAME+EMX2W87ZP0asdV4GFlsv9A";
+        str = md5(str);
+        System.out.println(str);
+        //String str = new String("73.25".getBytes("UTF-8"));
+        //for (int i = 0; i < 100000000; i++) {
+        //    str = md5(str);
+        //    if (i == 100000000 - 1) {
+        //        System.out.println(str);
+        //    }
+        //}
+
+    }
+
+    private static String md5(String value) {
+        byte[] bytes = null;
+        try {
+            MessageDigest messageDigest = MD4.getInstance();
+            bytes = messageDigest.digest(value.getBytes("UTF-8"));
+            char[] chars = new char[32];
+            for (int i = 0; i < chars.length; i = i + 2) {
+                byte b = bytes[i / 2];
+                chars[i] = HEX_CHARS[(b >>> 0x4) & 0xf];
+                chars[i + 1] = HEX_CHARS[b & 0xf];
+            }
+            return new String(chars);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public void maiqqn(String[] args) {
         //List<File> files = new ArrayList<>();
         //for (int i = 0; i < 10; i++) {
         //    File file = null;
