@@ -1,12 +1,14 @@
 package com.pattern.singleton;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 /**
  * @Author: WangYuJ
  * @Description:
  * @Date 2018/3/12
  */
 public class SingleTon {
-    private static SingleTon singleTon;
+    private static volatile SingleTon singleTon;
 
     //饿汉式线程安全，但失去了资源延迟加载的优势
 //    private static SingleTon singleton = new SingleTon();
@@ -22,5 +24,13 @@ public class SingleTon {
             }
         }
         return singleTon;
+    }
+    //嵌套类
+    private static class Holder{
+        //内部类可以访问外部类的静态属性和静态方法
+        private static SingleTon singleTon = new SingleTon();
+    }
+    public  static SingleTon getSingleTon1() {
+       return Holder.singleTon;
     }
 }
