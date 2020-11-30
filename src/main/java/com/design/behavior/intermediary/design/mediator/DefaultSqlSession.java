@@ -1,6 +1,9 @@
 package com.design.behavior.intermediary.design.mediator;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Map;
 
 /**
@@ -20,9 +23,11 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     @Override
-    public <T> T selectOne(String statement) {
+    public <T> T selectOne(String statement) throws SQLException {
         XNode xNode = mapperElement.get(statement);
-
-        return null;
+        PreparedStatement preparedStatement = connection.prepareStatement(xNode.getSql());
+        ResultSet resultSet = preparedStatement.executeQuery();
+        return (T) resultSet.getObject(1, String.class);
     }
+
 }
