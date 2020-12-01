@@ -1,15 +1,20 @@
 package com.design.behavior.visitor;
 
+import com.design.behavior.visitor.design.visitor.DataView;
+import com.design.behavior.visitor.design.visitor.impl.Parent;
+
 /**
- * 抽象工厂模式与工厂⽅方法模式虽然主要意图都是为了了解决，接口选择问题。
- * 但在实现上，抽象工厂是一个中心工厂，创建其他工厂的模式
+ * 访问者要解决的核心事项是，在一个稳定的数据结构下，
+ * 例如用户信息、雇员信息等，增加易变的业务访问逻辑。
+ * 为了增强扩展性，将这两部分的业务解耦的一种设计模式。
  *
  * @author wangyuj
  * @date 2020/10/29
  **/
 public class APITest {
     public static void main(String[] args) {
-
+        DataView dataView = new DataView();
+        dataView.visitor(new Parent());
 
     }
 }

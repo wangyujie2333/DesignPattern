@@ -26,8 +26,8 @@ public class APITest {
         /** 场景: 例如618大促销时, 业务上线随着时间不同需要的审批职级也不同
          * 设置一个审批链 */
         AuthLink authLink = new Level3AuthLink("3", "3")
-                .appendNext(new Level2AuthLink("2", "2")
-                        .appendNext(new Level1AuthLink("1", "1")));
+                .appendNext(new Level2AuthLink("2", "2"))
+                .appendNext(new Level1AuthLink("1", "1"));
         //审批
         AuthInfo order4 = authLink.doAuth("0", "order1", date);
         System.out.println(JSON.toJSONString(order4));
