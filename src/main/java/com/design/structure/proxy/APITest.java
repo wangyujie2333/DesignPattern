@@ -1,8 +1,8 @@
 package com.design.structure.proxy;
 
-import com.alibaba.fastjson.JSON;
-import com.design.structure.flyweight.design.ActivityController;
-import com.design.structure.flyweight.model.Activity;
+import com.design.structure.proxy.design.IUserDao;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.text.ParseException;
 
@@ -15,7 +15,8 @@ import java.text.ParseException;
 
 public class APITest {
     public static void main(String[] args) throws ParseException, InterruptedException {
-        /** 场景: 秒杀场景, 商品属性没有变化, 可以共享对象, 只针对库存做减库存*/
-
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("spring-config.xml");
+        IUserDao bean = (IUserDao) beanFactory.getBean("userDao");
+        bean.selectById("22");
     }
 }

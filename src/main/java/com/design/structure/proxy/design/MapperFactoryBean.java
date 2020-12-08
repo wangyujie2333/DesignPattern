@@ -1,10 +1,8 @@
 package com.design.structure.proxy.design;
 
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.FactoryBean;
 
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
@@ -22,11 +20,11 @@ public class MapperFactoryBean<T> implements FactoryBean<T> {
     @Override
     public T getObject() throws Exception {
         InvocationHandler handler = (proxy, method, args) -> {
-            Select annotation = method.getAnnotation(Select.class);
-            return annotation.value() + "=====" + args[0];
+            Select select = method.getAnnotation(Select.class);
+            System.out.println("SQL：{}" + select.value().replace("#{uId}", args[0].toString()));
+            return select.value() + "=====" + args[0];
         };
-        Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class[]{mapperInterface}, handler);
-        return null;
+        return (T) Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class[]{mapperInterface}, handler);
     }
 
     @Override
