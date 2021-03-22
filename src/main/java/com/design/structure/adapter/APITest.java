@@ -8,7 +8,7 @@ import com.design.structure.adapter.design.impl.POPOrderAdapterService;
 import java.text.ParseException;
 
 /**
- * 适配器器模式的主要作用就是把原本不兼容的接口，通过适配修改做到统一
+ * 适配器模式的主要作用就是把原本不兼容的接口，通过适配修改做到统一
  * 兼容属性 兼容接口
  * @author wangyuj
  * @date 2020/10/29

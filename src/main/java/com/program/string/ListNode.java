@@ -7,7 +7,7 @@ package com.program.string;
  */
 public class ListNode {
     private int val;
-    private ListNode next;
+    public ListNode next;
 
     public ListNode(int val) {
         this.val = val;
