@@ -1,6 +1,5 @@
 package com.pattern.singleton;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 /**
  * @Author: WangYuJ

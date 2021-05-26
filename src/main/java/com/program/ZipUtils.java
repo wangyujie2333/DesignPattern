@@ -1,6 +1,5 @@
 package com.program;
 
-import sun.security.provider.MD4;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -39,7 +38,7 @@ public class ZipUtils {
     private static String md5(String value) {
         byte[] bytes = null;
         try {
-            MessageDigest messageDigest = MD4.getInstance();
+            MessageDigest messageDigest = null;
             bytes = messageDigest.digest(value.getBytes("UTF-8"));
             char[] chars = new char[32];
             for (int i = 0; i < chars.length; i = i + 2) {
